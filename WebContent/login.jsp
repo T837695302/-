@@ -10,6 +10,9 @@
 
 
 <script>
+
+
+
 $(function() {
   var prefs = [
     ['北海道', 43.03, 141.21],
