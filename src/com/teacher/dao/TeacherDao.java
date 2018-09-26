@@ -1,4 +1,4 @@
-package com.student.dao;
+package com.teacher.dao;
 
 import java.sql.Types;
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class TeacherDao {
 	 * @return 返回值类型： List<Teacher>
 	 */
 	public List<Teacher> queryByName(String name) {
-		String sql = "select id,name,course  from teacher where name like '%" + name + "%'";
+		String sql = "select id,teachername,course  from teacher where teachername like '%" + name + "%'";
 
 		return jdbcTemplate.query(sql, new TeacherMapper());
 	}
@@ -95,10 +95,10 @@ public class TeacherDao {
 	 * @return 返回值类型： boolean
 	 */
 	public boolean addTeacher(Teacher teacher) {
-		String sql = "insert into teacher(id,name,course) values(0,?,?)";
+		String sql = "insert into teacher(id,teachername,course) values(0,?,?)";
 
-		return jdbcTemplate.update(sql, new Object[] { teacher.getId(), teacher.getTeachername(), teacher.getCourse() },
-				new int[] { Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.DOUBLE }) == 1;
+		return jdbcTemplate.update(sql, new Object[] { teacher.getTeachername(), teacher.getCourse() },
+				new int[] { Types.VARCHAR, Types.VARCHAR}) == 1;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class TeacherDao {
 	 */
 	public boolean updateTeacher(Teacher teacher) {
 
-		String sql = "update  teacher set id=? ,name=?,course = ? ";
+		String sql = "update  teacher set id=? ,teachername=?,course = ? ";
 		Object stuObj[] = new Object[] { teacher.getId(), teacher.getTeachername(), teacher.getCourse() };
 
 		return jdbcTemplate.update(sql, stuObj) == 1;

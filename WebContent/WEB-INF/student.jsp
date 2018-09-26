@@ -165,7 +165,7 @@ ${msg}
 
 	  <h2 id="edit_title">编辑学员</h2>
 	  <form id = "editForm"action="update" method="post">
-		<input id="editid" type="text" placeholder="要修改的id" id="edit_id" name="id" value="要修改的id为"/><br>
+		<input id="editid" type="text" placeholder="要修改的id" id="edit_id" name="id" placeholder="要修改的id为"/><br>
 		<input id="editname" type="text" placeholder="姓名" name="name" />
 		<input id="editbirthday" type="text" placeholder="出生年月" name="birthday" />
 		<input id="editage" type="text" placeholder="年龄" name="age" />

@@ -12,7 +12,7 @@ import com.student.bean.Student;
 import com.student.mapper.StudentMapper;
 import com.teacher.bean.Teacher;
 
-public class StudentDao2 {
+public class StudentDao3 {
 
 	/**
 	 * @Fields jdbcTemplate
@@ -60,6 +60,20 @@ public class StudentDao2 {
 
 		return studentList;
 	}
+	private static int CalculateMaxAge(HashMap<Integer, Student> studentmap) {
+		// TODO 自動生成されたメソッド・スタブ
+		int maxStudentAge = 0;
+		// foreach（拡張for文）での書き方
+		for (Student stu : ((Map<Integer, Student>) studentmap).values()) {
+			// 学生の年齢を取り出して、合計する
+			if (maxStudentAge < stu.getAge()) {
+				maxStudentAge = stu.getAge();
+			}
+
+		}
+		//学生年齢の最大値を返す
+		return maxStudentAge;
+	}
 	/**
 	 * 通过姓名查询
 	 *
@@ -95,7 +109,6 @@ public class StudentDao2 {
 	public boolean deleteStu(Integer id) {
 
 		String sql = "delete from student where id = ?";
-
 		return jdbcTemplate.update(sql, id) == 1;
 	}
 
@@ -131,21 +144,6 @@ public class StudentDao2 {
 		// 学生年齢の平均値を返す
 		return sum / 4;
 
-	}
-
-	private static int CalculateMaxAge(HashMap<Integer, Student> studentmap) {
-		// TODO 自動生成されたメソッド・スタブ
-		int maxStudentAge = 0;
-		// foreach（拡張for文）での書き方
-		for (Student stu : ((Map<Integer, Student>) studentmap).values()) {
-			// 学生の年齢を取り出して、合計する
-			if (maxStudentAge < stu.getAge()) {
-				maxStudentAge = stu.getAge();
-			}
-	
-		}
-		//学生年齢の最大値を返す
-		return maxStudentAge;
 	}
 
 	/**
