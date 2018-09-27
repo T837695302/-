@@ -12,40 +12,54 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
-	function addCheckForm() {
-		var form = document.getElementById('addForm');
-		var input_name = document.getElementById('addname').value;
-		var input_course = document.getElementById('addcourse').value;
 
-		if (input_name == "" || input_name == null) {
-			alert("请输入教師姓名！！！");
-			return false;
-		}
+function addCheckForm() {
+	var form = document.getElementById('addForm');
 
-		if (input_course == "" || input_course == null) {
-			alert("请输入科目！！！");
-			return false;
-		}
+	var input_name = document.getElementById('addname').value;
+	var input_course = document.getElementById('addcourse').value;
 
-		form.submit();
-		return true;
+	if (input_name == "" || input_name == null) {
+		alert("请输入教師姓名！！！");
+		return false;
 	}
+
+	if (input_course == "" || input_course == null) {
+		alert("请输入科目！！！");
+		return false;
+	}
+
+	form.submit();
+	return true;
+}
+
 
 	function delCheckForm() {
 		var form = document.getElementById('delForm');
-
 		var input_id = document.getElementById("delid").value;
+		var flag = 0;
 		if (input_id == "" || input_id == null) {
-			alert("请输入削除教師id！！！");
+			alert("请输入削除教師id！！！")
 			return false;
+		}
+		if (input_id.match(/[^0-9]+/)) {
+			flag = 1;
+		}
+
+		if (flag) {
+			window.alert('数字以外が入力できません');
+			return false; // 送信を中止
 		}
 
 		form.submit();
 		return true;
+
 	}
+
 
 	function editCheckForm() {
 		var form = document.getElementById('editForm');
+
 		var input_id = document.getElementById('editid');
 		var input_name = document.getElementById('editname');
 		var input_course = document.getElementById('editcourse');
@@ -74,6 +88,8 @@
 	<img src="./images/header.jpg" /> ${msg}
 	<h1 align="center">先生信息管理</h1>
 
+
+
 	<div id="all_comm" class="all">
 		<h2 align="center">先生信息一览</h2>
 		<table id="items">
@@ -94,7 +110,6 @@
 			</c:forEach>
 		</table>
 	</div>
-
 	<div id="add_comm" class="all" align="left">
 		<h2>查找先生</h2>
 		<form action="queryByNameTeac" method="post">

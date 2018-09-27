@@ -121,8 +121,8 @@ public class TeacherDao {
 	 */
 	public boolean updateTeacher(Teacher teacher) {
 
-		String sql = "update  teacher set id=? ,teachername=?,course = ? ";
-		Object stuObj[] = new Object[] { teacher.getId(), teacher.getTeachername(), teacher.getCourse() };
+		String sql = "update  teacher set teachername=?,course = ? where id=?";
+		Object stuObj[] = new Object[] {  teacher.getTeachername(), teacher.getCourse() ,teacher.getId()};
 
 		return jdbcTemplate.update(sql, stuObj) == 1;
 	}

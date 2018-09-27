@@ -55,7 +55,7 @@ public class StudentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "add")
+	@RequestMapping(value = "/add")
 	public String addStudent(String name, String birthday, String age, String score, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -84,7 +84,7 @@ public class StudentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "deleteById")
+	@RequestMapping(value = "/deleteById")
 	public String deleteById(String id, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -113,7 +113,7 @@ public class StudentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "update")
+	@RequestMapping(value = "/update")
 	public String updateStudent(String id, String name, String birthday, String age, String score, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -125,7 +125,7 @@ public class StudentController {
 		student.setAge(Integer.valueOf(age));
 		student.setScore(Double.parseDouble(score));
 
-		boolean result = dao.AddStudent(student);
+		boolean result = dao.updateStudent(student);
 
 		if (result) {
 			model.addAttribute("msg", "<script>alert('更新成功！')</script>");
@@ -206,7 +206,7 @@ public class StudentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "deleteByIdTeac")
+	@RequestMapping(value = "/deleteByIdTeac")
 	public String deleteByIdTeac(String id, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -235,7 +235,7 @@ public class StudentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "updateTeac")
+	@RequestMapping(value = "/updateTeac")
 	public String updateTeac(String id, String name, String course, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -246,7 +246,7 @@ public class StudentController {
 		teacher.setCourse(course);
 
 
-		boolean result = dao.addTeacher(teacher);
+		boolean result = dao.updateTeacher(teacher);
 
 		if (result) {
 			model.addAttribute("msg", "<script>alert('更新成功！')</script>");
