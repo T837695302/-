@@ -16,111 +16,92 @@ public class Student {
 	// 学生年齢
 	private int age;
 	// 学生成績
-	private double score;
+	private int score;
+
+	private int classid;
 
 	/**
-	 *
-	 * @return
-	 */
-	public String getBirthday() {
-		return birthday;
-	}
-
-	/**
-	 *
-	 * @param birthday
-	 */
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
-	/*
-	 *
+	 * @return id
 	 */
 	public Integer getId() {
 		return id;
 	}
 
 	/**
-	 *
-	 * @param id
+	 * @param id セットする id
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 *
-	 * @param name
+	 * @param name セットする name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return birthday
+	 */
+	public String getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @param birthday セットする birthday
+	 */
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	/**
+	 * @return age
 	 */
 	public int getAge() {
 		return age;
 	}
 
 	/**
-	 *
-	 * @param age
+	 * @param age セットする age
 	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return score
 	 */
-	public double getScore() {
+	public int getScore() {
 		return score;
 	}
 
 	/**
-	 *
-	 * @param score
+	 * @param score セットする score
 	 */
-	public void setScore(double score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 
 	/**
-	 * Newの時に使用するMethod
-	 *
-	 * @param id
-	 * @param name
-	 * @param birthday
-	 * @param age
-	 * @param score
+	 * @return classid
 	 */
-	public Student(Integer id, String name, String birthday, int age, double score) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.birthday = birthday;
-		this.age = age;
-		this.score = score;
+	public int getClassid() {
+		return classid;
 	}
 
 	/**
-	 * Newの時に使用するMethod
-	 *
+	 * @param classid セットする classid
 	 */
-	public Student() {
-		// TODO 自動生成されたコンストラクター・スタブ
+	public void setClassid(int classid) {
+		this.classid = classid;
 	}
 
 	/* (非 Javadoc)
@@ -129,7 +110,33 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", birthday=" + birthday + ", age=" + age + ", score=" + score
-				+ "]";
+				+ ", classid=" + classid + "]";
+	}
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param birthday
+	 * @param age
+	 * @param score
+	 * @param classid
+	 */
+	public Student(Integer id, String name, String birthday, int age, int score, int classid) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.birthday = birthday;
+		this.age = age;
+		this.score = score;
+		this.classid = classid;
+	}
+
+	/**
+	 *
+	 */
+	public Student() {
+		super();
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 }

@@ -2,161 +2,108 @@ package com.teacher.dao;
 
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.student.bean.Student;
-import com.student.mapper.StudentMapper;
+import com.student.bean.Teacher;
 import com.student.mapper.TeacherMapper;
-import com.teacher.bean.Teacher;
 
+/**
+ *
+ * StudentDao クラス
+ *
+ * @author liu
+ *
+ */
 public class TeacherDao {
 
-	/**
-	 * @Fields jdbcTemplate
-	 */
+	// @Fields jdbcTemplate
 	private JdbcTemplate jdbcTemplate;
 
-	/**
-	 * spring提供的类
-	 *
-	 * @param jdbcTemplate
-	 *            返回值类型： void
-	 */
+	// spring提供的类
+	// @param jdbcTemplate
+	// 返回值类型： void
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	/**
-	 * 查询所有先生
+	 * すべての学生を検索する
 	 *
-	 * @return 返回值类型： List<Teacher>
+	 * @return List<Student>
 	 */
 	public List<Teacher> queryAll() {
 		String sql = "select id,teachername,course from teacher";
-		// MySqlからteacherListを取得
+		// SQLから学生情報を貰う
 		ArrayList<Teacher> teacherList = (ArrayList<Teacher>) jdbcTemplate.query(sql, new TeacherMapper());
+		// teacherdao("StudentListから1番目のStudent対象を取得する" + teacherList1.get(0));
+		// System.out.println("StudentListから2番目のStudent対象を取得する" + teacherList1.get(1));
+		System.out.println("teacherList:" + teacherList);
+		// for (Teacher teacher : teacherList1) {
+		// System.out.println(teacher.toString());
+		// System.out.println("teachername" + teacher.getTeachername());
 
-		// 先生の1個ずつ取り出す
-		// 空teacherMapを生成する
-		HashMap<Integer, Teacher> teachermap = new HashMap<Integer, Teacher>();
-		int i = 0;
-		for (Teacher teacher : teacherList) {
-			// 先生の1個ずつ渡してPrintStudentメソッドを呼び出し、表示処理
-			i = i + 1;
-			teachermap.put(i, teacher);
-		}
-
-		for (Teacher stu : teachermap.values()) {
-			// 先生の1個ずつ渡してPrintStudentメソッドを呼び出し、表示処理
-			System.out.println(teachermap);
-		}
-		// 一番大大きなidを印刷
-		int maxTeacherId = CalculateMaxId(teachermap);
-		System.out.println("一番大大きなid:" + maxTeacherId);
-
-		return teacherList;
-	}
-
-	private static int CalculateMaxId(HashMap<Integer, Teacher> teachermap) {
-		// TODO 自動生成されたメソッド・スタブ
-		int maxTeacherId = 0;
-		// foreach（拡張for文）での書き方
-		for (Teacher teacher : ((Map<Integer, Teacher>) teachermap).values()) {
-			// 学生の年齢を取り出して、合計する
-			if (maxTeacherId < teacher.getId()) {
-				maxTeacherId = teacher.getId();
-			}
-
-		}
-		// 先生idの最大値を返す
-		return maxTeacherId;
-	}
-
-	/**
-	 * 通过姓名查询
-	 *
-	 * @param name
-	 * @return 返回值类型： List<Teacher>
-	 */
-	public List<Teacher> queryByName(String name) {
-		String sql = "select id,teachername,course  from teacher where teachername like '%" + name + "%'";
-
+		// String sql=""
 		return jdbcTemplate.query(sql, new TeacherMapper());
 	}
 
 	/**
-	 * 添加先生
+	 * 名前で検査する
 	 *
-	 * @param teacher
-	 * @return 返回值类型： boolean
+	 * @param name
+	 * @return List<Student>
+	 */
+	public List<Teacher> queryByName(String teachername) {
+		String sql = "select id,teachername,course from teacher where teachername like '%" + teachername + "%'";
+		List<Teacher> teacherList = new ArrayList();
+		teacherList = jdbcTemplate.query(sql, new TeacherMapper());
+		return teacherList;
+	}
+
+	/**
+	 * 学生を新規する
+	 *
+	 * @param student
+	 * @return boolean
 	 */
 	public boolean addTeacher(Teacher teacher) {
-		String sql = "insert into teacher(id,teachername,course) values(0,?,?)";
+		String sql = "insert into teacher(id,teachername,course )value(0,?,?)";
 
 		return jdbcTemplate.update(sql, new Object[] { teacher.getTeachername(), teacher.getCourse() },
-				new int[] { Types.VARCHAR, Types.VARCHAR}) == 1;
+				new int[] { Types.VARCHAR, Types.VARCHAR }) == 1;
+		// new Object[]{X,X,X,X},new int[]{X,X,X,X})==1(基本構成)
+		// return jdbcTemplate.update(sql,new Object[] {X,X,X,X },new int[] {X,X,X,X })
+		// == 1;
+		/**
+		 *
+		 */
+
 	}
 
 	/**
-	 * 删除先生
+	 * idで学生を削除する
 	 *
 	 * @param id
-	 * @return 返回值类型： boolean
+	 * @return boolean
 	 */
 	public boolean deleteTeacher(Integer id) {
-
-		String sql = "delete from teacher where id = ?";
+		String sql = "delete from teacher where id=?";
 		return jdbcTemplate.update(sql, id) == 1;
+
 	}
 
 	/**
-	 * 更新先生信息
+	 * 学生の情報を更新する
 	 *
-	 * @param teacher
-	 * @return 返回值类型： boolean
+	 * @param student
+	 * @return boolean
 	 */
 	public boolean updateTeacher(Teacher teacher) {
+		String sql = "update teacher set teachername=? ,course=? where id=?";
 
-		String sql = "update  teacher set teachername=?,course = ? where id=?";
-		Object stuObj[] = new Object[] {  teacher.getTeachername(), teacher.getCourse() ,teacher.getId()};
+		Object teacherobject[] = new Object[] {  teacher.getTeachername(), teacher.getCourse(), teacher.getId()};
 
-		return jdbcTemplate.update(sql, stuObj) == 1;
-	}
-
-	/**
-	 * 先生idの平均値
-	 *
-	 * @param Teacher
-	 *            hashmap return 先生idの平均値
-	 *
-	 */
-	private static int averTeacherId(ArrayList<Teacher> teacherList) {
-		int sum = 0;
-		// foreach（拡張for文）での書き方
-		for (Teacher teacher : teacherList) {
-			// 先生idを取り出して、合計する
-			sum = sum + teacher.getId();
-		}
-		// 先生idの平均値を返す
-		return sum / teacherList.size();
-
-	}
-
-	/**
-	 * 先生の情報を印刷する
-	 *
-	 * @param Teacher
-	 *            return
-	 */
-	private static void PrintTeacher(Teacher teacher) {
-		System.out.println("Id" + teacher.getId());
-		System.out.println("Name" + teacher.getTeachername());
-		System.out.println("Course" + teacher.getCourse());
-
+		return jdbcTemplate.update(sql, teacherobject) == 1;
 	}
 
 }

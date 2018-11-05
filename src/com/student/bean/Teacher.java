@@ -1,37 +1,35 @@
-/**
- *
- */
-package com.teacher.bean;
+package com.student.bean;
 
 /**
- * 先生クラス
+ * 学生のクラス
+ *
  * @author xumin
  *
  */
 public class Teacher {
+	// 学生id
+	private Integer id;
+	// 学生姓名
+	private String teachername;
+	// 学生生年月日
+	private String course;
 
-	private int id;// id
-	private String teachername;// 名氏
-	private String course;// 授業
-
-	/**id
+	/**
 	 * @return id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
-	 * id
 	 * @param id
 	 *            セットする id
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * 先生名teachername
 	 * @return teachername
 	 */
 	public String getTeachername() {
@@ -46,7 +44,7 @@ public class Teacher {
 		this.teachername = teachername;
 	}
 
-	/**　授業
+	/**
 	 * @return course
 	 */
 	public String getCourse() {
@@ -61,13 +59,22 @@ public class Teacher {
 		this.course = course;
 	}
 
+	/*
+	 * (非 Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Teacher [id=" + id + ", teachername=" + teachername + ", course=" + course + "]";
+	}
+
 	/**
-	 * 先生Newの時使用するMethod
 	 * @param id
 	 * @param teachername
 	 * @param course
 	 */
-	public Teacher(int id, String teachername, String course) {
+	public Teacher(Integer id, String teachername, String course) {
 		super();
 		this.id = id;
 		this.teachername = teachername;
@@ -76,23 +83,10 @@ public class Teacher {
 
 	/**
 	 *
-	 *先生Newの時使用するMethod
 	 */
 	public Teacher() {
 		super();
 		// TODO 自動生成されたコンストラクター・スタブ
-	}
-
-	/*
-	 * (非 Javadoc)
-	 *
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Teacher [id=" + id + ", teachername=" + teachername + ", course=" + course + ", getId()=" + getId()
-				+ ", getTeachername()=" + getTeachername() + ", getCourse()=" + getCourse() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }

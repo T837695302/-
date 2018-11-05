@@ -113,7 +113,7 @@ function addCheckForm() {
 	<div id="add_comm" class="all" align="left">
 		<h2>查找先生</h2>
 		<form action="queryByNameTeac" method="post">
-			<input type="text" placeholder="姓名" name="name"> <input
+			<input type="text" placeholder="姓名" name="teacername"> <input
 				type="submit" value="查找先生">
 		</form>
 
