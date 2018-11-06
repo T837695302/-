@@ -34,10 +34,12 @@ $(document).ready(function(){
 		}
 
 		if (input_course == "" || input_course == null) {
-			alert("请输入先生出生年月！！！");
+			alert("请输入先生科目！！！");
 			return false;
 		}
 
+		
+		
 		form.submit();
 		return true;
 	}

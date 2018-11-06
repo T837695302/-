@@ -6,74 +6,140 @@
 <title>TAG index Webサイト</title>
 
 <script type="text/javascript">
-	function keisan() {
+// フォームチェック
+function FormCheck() {
 
-		// 設定開始
-
-		// 商品1
-		var price1 = document.form1.goods1.options[document.form1.goods1.selectedIndex].value;
-
-		// 商品2
-		var price2 = document.form1.goods2.options[document.form1.goods2.selectedIndex].value;
-
-		// 商品3
-		var price3 = document.form1.goods3.options[document.form1.goods3.selectedIndex].value;
-
-		// 合計を計算
-		var total = parseInt(price1) + parseInt(price2) + parseInt(price3);
-
-		// 設定終了
-
-		document.form1.field_total.value = total; // 合計を表示
-
+	// 未入力チェック
+	var val = document.getElementsByName("Id")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "IDは必須入力です" );
+		val.focus();
+		return;
 	}
+
+	// 入力値チェック
+	if ( !val.value.match( /[0-9]{4}/ ) ) {
+		alert( "入力値が間違っています" );
+		val.focus();
+		return;
+	}
+
+	// 未入力チェック
+	var val = document.getElementsByName("Name")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "氏名は必須入力です" );
+		val.focus();
+		return;
+	}
+
+	// 未入力チェック
+	var val = document.getElementsByName("PostNo")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "郵便番号は必須入力です" );
+		val.focus();
+		return;
+	}
+
+	// 入力値チェック
+	if ( !val.value.match( /[0-9]{3}-[0-9]{4}/ ) ) {
+		alert( "入力値が間違っています" );
+		val.focus();
+		return;
+	}
+
+	// 未入力チェック
+	var val = document.getElementsByName("Address")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "住所は必須入力です" );
+		val.focus();
+		return;
+	}
+
+	// 入力値チェック
+	var val = document.getElementsByName("TelNo")[0];
+	if ( !val.value.match( /^0[0-9]{1,2}-[0-9]{4,5}-[0-9]{4}$/ ) ) {
+		alert( "電話番号入力値が間違っています" );
+		val.focus();
+		return;
+	}
+
+	// 入力値チェック
+	var val = document.getElementsByName("Mail")[0];
+	if ( !val.value.match( /^([a-z0-9_\.\-])+@([a-z0-9_\.\-])+/ ) ) {
+		alert( "メール入力値が間違っています" );
+		val.focus();
+		return;
+	}
+
+}
+
+// 前後スペース削除(全角半角対応)
+function jsTrim( val ) {
+
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+	ret = ret.replace( /[\s]*$/, "" );
+
+	return ret;
+}
+
+// 前スペース削除(全角半角対応)
+function jsLTrim( val ) {
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+
+	return ret;
+}
+
+// 後スペース削除(全角半角対応)
+function jsRTrim( val ) {
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+
+	return ret;
+}
 </script>
 
 </head>
 <body>
+<form id="delForm" action="/all" method="post">
 
-	<form action="#" name="form1">
+<TABLE>
+	<TR>
+		<TD>ID<span style="color: #FF0000;">*</span></TD>
+		<TD><INPUT type=text name=Id maxlength=4 value="" style="width: 50px;"> (0000)</TD>
+	</TR>
+	<TR>
+		<TD>氏名<span style="color: #FF0000;">*</span></TD>
+		<TD><INPUT type=text name=Name value="" style="width: 130px;"></TD>
+	</TR>
+	<TR>
+		<TD>郵便番号<span style="color: #FF0000;">*</span></TD>
+		<TD><INPUT type=text name=PostNo maxlength=8 width=70px value="" style="width: 70px;"> (000-0000)</TD>
+	</TR>
+	<TR>
+		<TD>住所<span style="color: #FF0000;">*</span></TD>
+		<TD><INPUT type=text name=Address width=200px value="" style="width: 450px;"></TD>
+	</TR>
+	<TR>
+		<TD>電話番号</TD>
+		<TD><INPUT type=text name=TelNo width=100px value=""></TD>
+	</TR>
+	<TR>
+		<TD>メールアドレス</TD>
+		<TD><INPUT type=text name=Mail width=100px value="" style="width: 200px;"></TD>
+	</TR>
+	<TR>
+		<TD colspan=2>
+			<INPUT type=button name=btn value="チェック" onClick="FormCheck();">
+		</TD>
+	</TR>
+</TABLE>
+</form>
 
-		<table>
-			<tr>
-				<th>商品名</th>
-				<th>タイプ</th>
-			</tr>
-			<tr>
-				<td>商品サンプル1</td>
-				<td><select name="goods1" onChange="keisan()">
-						<option value="0">タイプを選択してください</option>
-						<option value="500">タイプ1（500円）</option>
-						<option value="1000">タイプ2（1,000円）</option>
-						<option value="1500">タイプ3（1,500円）</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>商品サンプル2</td>
-				<td><select name="goods2" onChange="keisan()">
-						<option value="0">タイプを選択してください</option>
-						<option value="500">タイプ1（500円）</option>
-						<option value="1000">タイプ2（1,000円）</option>
-						<option value="1500">タイプ3（1,500円）</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>商品サンプル3</td>
-				<td><select name="goods3" onChange="keisan()">
-						<option value="0">タイプを選択してください</option>
-						<option value="500">タイプ1（500円）</option>
-						<option value="1000">タイプ2（1,000円）</option>
-						<option value="1500">タイプ3（1,500円）</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td align="right"><strong>合計</strong></td>
-				<td><input type="text" name="field_total" size="8" value="0">
-					円</td>
-			</tr>
-		</table>
-
-	</form>
 
 </body>
 </html>
