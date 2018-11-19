@@ -139,4 +139,9 @@ public class Student {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
+	public void add(Student studentOne) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
 }

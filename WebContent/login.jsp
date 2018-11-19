@@ -105,41 +105,42 @@ function jsRTrim( val ) {
 
 </head>
 <body>
-<form id="delForm" action="/all" method="post">
+/*
+//<form id="delForm" action="/all" method="post">
 
-<TABLE>
-	<TR>
-		<TD>ID<span style="color: #FF0000;">*</span></TD>
-		<TD><INPUT type=text name=Id maxlength=4 value="" style="width: 50px;"> (0000)</TD>
-	</TR>
-	<TR>
-		<TD>氏名<span style="color: #FF0000;">*</span></TD>
-		<TD><INPUT type=text name=Name value="" style="width: 130px;"></TD>
-	</TR>
-	<TR>
-		<TD>郵便番号<span style="color: #FF0000;">*</span></TD>
-		<TD><INPUT type=text name=PostNo maxlength=8 width=70px value="" style="width: 70px;"> (000-0000)</TD>
-	</TR>
-	<TR>
-		<TD>住所<span style="color: #FF0000;">*</span></TD>
-		<TD><INPUT type=text name=Address width=200px value="" style="width: 450px;"></TD>
-	</TR>
-	<TR>
-		<TD>電話番号</TD>
-		<TD><INPUT type=text name=TelNo width=100px value=""></TD>
-	</TR>
-	<TR>
-		<TD>メールアドレス</TD>
-		<TD><INPUT type=text name=Mail width=100px value="" style="width: 200px;"></TD>
-	</TR>
-	<TR>
-		<TD colspan=2>
-			<INPUT type=button name=btn value="チェック" onClick="FormCheck();">
-		</TD>
-	</TR>
-</TABLE>
-</form>
+//<TABLE>
+//	<TR>
+//		<TD>ID<span style="color: #FF0000;">*</span></TD>
+//		<TD><INPUT type=text name=Id maxlength=4 value="" style="width: 50px;"> (0000)</TD>
+//	</TR>
+//	<TR>
+//		<TD>氏名<span style="color: #FF0000;">*</span></TD>
+//		<TD><INPUT type=text name=Name value="" style="width: 130px;"></TD>
+//	</TR>
+//	<TR>
+//		<TD>郵便番号<span style="color: #FF0000;">*</span></TD>
+//		<TD><INPUT type=text name=PostNo maxlength=8 width=70px value="" style="width: 70px;"> (000-0000)</TD>
+//	</TR>
+//	<TR>
+//		<TD>住所<span style="color: #FF0000;">*</span></TD>
+//		<TD><INPUT type=text name=Address width=200px value="" style="width: 450px;"></TD>
+//	</TR>
+//<TR>
+//		<TD>電話番号</TD>
+//		<TD><INPUT type=text name=TelNo width=100px value=""></TD>
+//	</TR>
+//	<TR>
+//		<TD>メールアドレス</TD>
+//		<TD><INPUT type=text name=Mail width=100px value="" style="width: 200px;"></TD>
+//	</TR>
+//	<TR>
+//		<TD colspan=2>
+//			<INPUT type=button name=btn value="チェック" onClick="FormCheck();">
+//		</TD>
+//	</TR>
+//</TABLE>
+//</form>
 
-
+*/
 </body>
 </html>
