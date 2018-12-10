@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>学员管理</title>
+<title>先生管理</title>
 <link rel="stylesheet" type="text/css" href="./css/all.css" />
 <style type="text/css">
 </style>
@@ -18,26 +18,25 @@
 <body>
 	<img src="./images/header.jpg" /> ${msg}
 	<h1 align="center">先生信息管理</h1>
-
-	<div id="all_comm" class="all">
+	<form action="tall">
+		<div>
 		<h2 align="center">先生信息一览</h2>
-		<table id="table_id" border="8">
+		<table id="table_id">
 			<tr>
 				<td>id</td>
-				<td>teachername</td>
+				<td>name</td>
 				<td>course</td>
-
 			</tr>
 
 			<c:forEach items="${teachers}" var="teacher">
 				<tr>
-					<td id="id${teacher.id }">${teacher.id}</td>
-					<td id="teachername${teacher.id }">${teacher.teachername}</td>
-					<td id="course${teacher.id}">${teacher.course}</td>
-
+				<td id="${teacher.id }"> "${teacher.id}</td>
+					<td id="${teacher.id }"> "${teacher.name}</td>
+					<td id="${teacher.id}">"${teacher.course}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	</form>
 </body>
 </html>

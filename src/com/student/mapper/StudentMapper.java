@@ -1,53 +1,43 @@
 package com.student.mapper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.springframework.jdbc.core.RowMapper;
 
 import com.student.bean.Student;
 
-/**
- * StudentMapper数据库映射
- *
- * @ClassName StudentMapper
- */
-
 public class StudentMapper implements RowMapper<Student> {
 
-	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+	@Override
+	public Student mapRow(ResultSet resultSet, int arg1) throws SQLException {
+
 		Student student = new Student();
-		student.setId(rs.getInt(1));
-		student.setName(rs.getString(2));
-		student.setBirthday(getStringDate(rs.getString(3)));
-		student.setAge(rs.getInt(4));
-		student.setClassid(rs.getInt(5));
-		student.setScore(rs.getInt(6));
+		student.setId(resultSet.getInt(1));
+		student.setName(resultSet.getString(2));
+		student.setBirthday(dateToString(resultSet.getDate(3)));
+		student.setAge(resultSet.getInt(4));
+		student.setScore(resultSet.getInt(5));
+		student.setClassid(resultSet.getInt(6));
+
 		return student;
 	}
 
 	/**
-	 * 获取日期
+	 * 日付から、文字列に変化する.
 	 *
-	 * @return 返回日期字符串格式yyyy-MM-dd
-	 * @throws ParseException
+	 * @param date 日付.
+	 * @return　文字列.
 	 */
-	private String getStringDate(String birthday) {
+	private String dateToString(Date date) {
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateString = new Date();
-		
-		String strRtnDate = "";
-		try {
-			dateString = formatter.parse(birthday);
-			strRtnDate = new SimpleDateFormat("yyyy-MM-dd").format(dateString);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		String dateStr = null;
+		if (date != null) {
+			dateStr = new SimpleDateFormat("yyyy/mm/dd").format(date);
 		}
-		return strRtnDate;
+		return dateStr;
 	}
 
 }

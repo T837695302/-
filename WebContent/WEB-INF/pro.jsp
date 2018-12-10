@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>学员管理</title>
+<title>管理</title>
 <link rel="stylesheet" type="text/css" href="./css/all.css" />
 <style type="text/css">
 </style>
@@ -16,24 +16,21 @@
   <!-- DataTables -->
 </head>
 <body>
-	<img src="./images/header.jpg" /> ${msg}
-	<h1 align="center">先生信息管理</h1>
+	<img src="./images/header.jpg" />
 
-	<div id="all_comm" class="all">
-		<h2 align="center">先生信息一览</h2>
 		<table id="table_id" border="8">
 			<tr>
 				<td>id</td>
-				<td>teachername</td>
-				<td>course</td>
+				<td>name</td>
+				<td>weight</td>
 
 			</tr>
 
-			<c:forEach items="${teachers}" var="teacher">
+			<c:forEach items="${pros}" var="pro">
 				<tr>
-					<td id="id${teacher.id }">${teacher.id}</td>
-					<td id="teachername${teacher.id }">${teacher.teachername}</td>
-					<td id="course${teacher.id}">${teacher.course}</td>
+					<td id="${pro.id}">${pro.id}</td>
+					<td id="${pro.id}">${pro.name}</td>
+					<td id="${pro.id}">${pro.weight}</td>
 
 				</tr>
 			</c:forEach>

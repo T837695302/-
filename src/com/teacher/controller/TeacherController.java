@@ -1,4 +1,4 @@
-package com.student.controller;
+package com.teacher.controller;
 
 import java.util.List;
 
@@ -8,25 +8,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.student.bean.Student;
-import com.student.dao.StudentDao;
+import com.teacher.bean.Teacher;
+import com.teacher.dao.TeacherDao;
 
-/**
- * 学生コントロールクラス
- *
- * @author xingw
- *
- */
 @Controller
-public class StudentController {
 
-	@RequestMapping(value = "/all")
+public class TeacherController {
+	@RequestMapping(value = "/tea")
 	public String quaryAll(Model model) {
 		ApplicationContext classPath = new ClassPathXmlApplicationContext("applicationContext.xml");
-		StudentDao studentDao = (StudentDao) classPath.getBean("dao");
-		List<Student> studentList = studentDao.queryAll();
-		model.addAttribute("studentList", studentList);
-		return "index";
+		TeacherDao teacherDao = (TeacherDao) classPath.getBean("teadao");
+		List<Teacher> teacherList = teacherDao.queryAll();
+
+		model.addAttribute("teachers", teacherList);
+
+		return "teacherindex";
 	}
-	
 }
+

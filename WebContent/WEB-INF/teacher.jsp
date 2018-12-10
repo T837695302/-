@@ -12,27 +12,25 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
+	function addCheckForm() {
+		var form = document.getElementById('addForm');
 
-function addCheckForm() {
-	var form = document.getElementById('addForm');
+		var input_name = document.getElementById('addname').value;
+		var input_course = document.getElementById('addcourse').value;
 
-	var input_name = document.getElementById('addname').value;
-	var input_course = document.getElementById('addcourse').value;
+		if (input_name == "" || input_name == null) {
+			alert("请输入教師姓名！！！");
+			return false;
+		}
 
-	if (input_name == "" || input_name == null) {
-		alert("请输入教師姓名！！！");
-		return false;
+		if (input_course == "" || input_course == null) {
+			alert("请输入科目！！！");
+			return false;
+		}
+
+		form.submit();
+		return true;
 	}
-
-	if (input_course == "" || input_course == null) {
-		alert("请输入科目！！！");
-		return false;
-	}
-
-	form.submit();
-	return true;
-}
-
 
 	function delCheckForm() {
 		var form = document.getElementById('delForm');
@@ -55,7 +53,6 @@ function addCheckForm() {
 		return true;
 
 	}
-
 
 	function editCheckForm() {
 		var form = document.getElementById('editForm');
@@ -92,7 +89,8 @@ function addCheckForm() {
 
 	<div id="all_comm" class="all">
 		<h2 align="center">先生信息一览</h2>
-		<table id="items">
+		<table id="items" border="8">
+
 			<tr>
 				<td>id</td>
 				<td>姓名</td>
@@ -103,8 +101,7 @@ function addCheckForm() {
 			<c:forEach items="${teachers}" var="teacher">
 				<tr>
 					<td id="id${teacher.id }">${teacher.id}</td>
-					<td id="name${teacher.id }">${teacher.teachername}</td>
-					<td id="birthday${teacher.id}">${teacher.course}</td>
+					<td id="name${teacher.id}">${teacher.teachername}</td>
 
 				</tr>
 			</c:forEach>
@@ -112,9 +109,14 @@ function addCheckForm() {
 	</div>
 	<div id="add_comm" class="all" align="left">
 		<h2>查找先生</h2>
-		<form action="queryByNameTeac" method="post">
-			<input type="text" placeholder="姓名" name="teacername"> <input
+		<form action="queryTeaByName" method="post">
+			<input type="text" placeholder="姓名" name="teachername"> <input
 				type="submit" value="查找先生">
+		</form>
+		<h2>查找先生id</h2>
+		<form action=queryteaById method="post">
+			<input type="text" placeholder="Id" name="id"> <input
+				type="submit" value="查找先生id">
 		</form>
 
 		<h2 id="edit_title">添加先生</h2>
@@ -139,6 +141,17 @@ function addCheckForm() {
 				type="text" placeholder="姓名" name="name" /> <input id="editcourse"
 				type="text" placeholder="科目" name="course" /> <input type="button"
 				value="确定修改" onclick="editCheckForm()" />
+		</form>
+	</div>
+
+	<div id="add_comm" class="all" align="center">
+		<h2 id="edit_title">先生の追加</h2>
+		<form id="addForm" action="addtea" method="post" class="checkform">
+			<input id="addname" type="text" placeholder="氏名" name="teachername" /> <input
+				id="addcourse" type="text" placeholder="科目" name="course" />
+
+			<!-- <input type="button" value="添加" onClick="addCheckForm(this.form.txt)" /> -->
+			<input type="submit" value="添の加" />
 		</form>
 	</div>
 </body>
