@@ -1,6 +1,5 @@
 package com.aaa.controller;
 
-
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.aaa.bean.Aaa;
 import com.aaa.dao.AaaDao;
 
-
 @Controller
 /**
  * グラフのすべての情報を捜す
+ *
  * @author User
  *
  */
@@ -30,7 +29,6 @@ public class AaaController {
 
 		return "aaa";
 	}
-
 
 	// @RequestMapping(value = "/displayteaList")
 	// public String queryAlltea(Model model) {
@@ -50,6 +48,7 @@ public class AaaController {
 	 */
 	/**
 	 * 名前に沿ってグラフを捜す
+	 *
 	 * @param name
 	 * @param model
 	 * @return
@@ -61,27 +60,32 @@ public class AaaController {
 		model.addAttribute("aaaList", dao.queryAll());
 		return "aaa";
 	}
-@RequestMapping(value = "/delebyid")
-public String delebyid(String id,Model model) {
-	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	AaaDao dao = (AaaDao) context.getBean("aaadao");
-	boolean result = dao.deleteAaa(Integer.parseInt(id));
-	if (result) {
-		System.out.println("削除成功");
-	} else {
-		System.out.println("削除失敗");
+/**
+ *
+ * @param id
+ * @param model
+ * @return
+ */
+	@RequestMapping(value = "/delebyid")
+	public String delebyid(String id, Model model) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		AaaDao dao = (AaaDao) context.getBean("aaadao");
+		boolean result = dao.deleteAaa(Integer.parseInt(id));
+		if (result) {
+			System.out.println("削除成功");
+		} else {
+			System.out.println("削除失敗");
+		}
+		model.addAttribute("aaaList", dao.queryAll());
+		return "aaa";
 	}
-	model.addAttribute("aaaList", dao.queryAll());
-	return "aaa";
-}
-
 
 	@RequestMapping(value = "/updates")
-	public String Updateaaa(String id, String name, String place, String weight, String line,String address, Model model) {
-		ApplicationContext context = new
-				 ClassPathXmlApplicationContext("applicationContext.xml");
-				 AaaDao dao = (AaaDao) context.getBean("aaadao");
-				 Aaa aaa = new Aaa();
+	public String Updateaaa(String id, String name, String place, String weight, String line, String address,
+			Model model) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		AaaDao dao = (AaaDao) context.getBean("aaadao");
+		Aaa aaa = new Aaa();
 		aaa.setId(Integer.parseInt(id));
 		aaa.setName(name);
 		aaa.setPlace(place);
@@ -97,8 +101,9 @@ public String delebyid(String id,Model model) {
 		model.addAttribute("aaaList", dao.queryAll());
 		return "aaa";
 	}
+
 	@RequestMapping(value = "/addaaa")
-	public String AddAaa(String name, String place,  String weight, String line,String address, Model model) {
+	public String AddAaa(String name, String place, String weight, String line, String address, Model model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		AaaDao dao = (AaaDao) context.getBean("aaadao");
 		Aaa aaa = new Aaa();
@@ -117,13 +122,12 @@ public String delebyid(String id,Model model) {
 		return "aaa";
 	}
 
-
 	/**
 	 * 郵便番号から住所を添加する
+	 *
 	 * @param address
 	 * @param model
 	 * @return
 	 */
-
 
 }
