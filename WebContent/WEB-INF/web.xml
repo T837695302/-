@@ -3,10 +3,10 @@
 
 	<!-- 配置欢迎界面 -->
 	<welcome-file-list>
-	  <welcome-file>login.jsp</welcome-file>
+	  <welcome-file>Login.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- 配置springMVC servlet -->
+	<!-- 配置springMVCservlet -->
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

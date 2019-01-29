@@ -18,6 +18,7 @@
 <body>
 	<img src="./images/header.jpg" />
 
+<table cellspacing="0px" cellspadding="0px" width="300">
 		<table id="table_id" border="8">
 			<tr>
 				<td>id</td>

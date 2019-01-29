@@ -9,16 +9,18 @@
 <meta charset="UTF-8">
 <title>先生管理</title>
 <link rel="stylesheet" type="text/css" href="./css/all.css" />
-<style type="text/css">
-</style>
- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
-  <!-- jQuery -->
-  <!-- DataTables -->
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<img src="./images/header.jpg" /> ${msg}
 	<h1 align="center">先生信息管理</h1>
-	<form action="tall">
+
+
 		<div>
 		<h2 align="center">先生信息一览</h2>
 		<table id="table_id">
@@ -30,13 +32,22 @@
 
 			<c:forEach items="${teachers}" var="teacher">
 				<tr>
-				<td id="${teacher.id }"> "${teacher.id}</td>
-					<td id="${teacher.id }"> "${teacher.name}</td>
-					<td id="${teacher.id}">"${teacher.course}</td>
+				<td id="${teacher.id }">${teacher.id}</td>
+					<td id="${teacher.id }">${teacher.name}</td>
+					<td id="${teacher.id}">${teacher.course}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	</form>
+
+	<div id="add_comm" class="all" align="left">
+	  <h2>查找</h2>
+	  <form action="queryByid" method="post" >
+		<input type="text" placeholder="id" name="id" >
+		<input type="submit" value="查找" >
+	  </form>
+
+
+</div>
 </body>
 </html>

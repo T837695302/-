@@ -32,4 +32,10 @@
     </bean>
 	<bean id="proDao" class="com.pro.dao.ProDao">
     </bean>
+     <bean id="bossdao" class="com.boss.dao.BossDao">
+    </bean>
+    <bean id="aaadao" class="com.aaa.dao.AaaDao">
+    </bean>
+    <bean id="yadao" class="com.ya.dao.YaDao">
+    </bean>
  </beans>

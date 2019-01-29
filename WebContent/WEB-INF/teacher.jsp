@@ -12,80 +12,80 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
-	function addCheckForm() {
-		var form = document.getElementById('addForm');
 
-		var input_name = document.getElementById('addname').value;
-		var input_course = document.getElementById('addcourse').value;
-
-		if (input_name == "" || input_name == null) {
-			alert("请输入教師姓名！！！");
-			return false;
-		}
-
-		if (input_course == "" || input_course == null) {
-			alert("请输入科目！！！");
-			return false;
-		}
-
-		form.submit();
-		return true;
-	}
-
-	function delCheckForm() {
-		var form = document.getElementById('delForm');
-		var input_id = document.getElementById("delid").value;
-		var flag = 0;
-		if (input_id == "" || input_id == null) {
-			alert("请输入削除教師id！！！")
-			return false;
-		}
-		if (input_id.match(/[^0-9]+/)) {
-			flag = 1;
-		}
-
-		if (flag) {
-			window.alert('数字以外が入力できません');
-			return false; // 送信を中止
-		}
-
-		form.submit();
-		return true;
-
-	}
-
-	function editCheckForm() {
-		var form = document.getElementById('editForm');
-
-		var input_id = document.getElementById('editid');
-		var input_name = document.getElementById('editname');
-		var input_course = document.getElementById('editcourse');
-
-		if (input_id == "" || input_id == null) {
-			alert("请输入教師id！！！");
-			return false;
-		}
-
-		if (input_name == "" || input_name == null) {
-			alert("请输入教師姓名！！！");
-			return false;
-		}
-
-		if (input_course == "" || input_course == null) {
-			alert("请输入科目！！！");
-			return false;
-		}
-
-		form.submit();
-		return true;
-	}
 </script>
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		$("#display").click(function() {
+			$("#displsayGood").submit();
+		});
+	});
+	$(function(){
+		$("#delebutton").click(function() {
+			$("#deleForm").submit();
+		});
+
+	});
+
+	$(function(){
+		$("#displaystudentList").click(function() {
+			$("#displaystudentList").submit();
+		});
+
+	});
+
+	$(document).ready(function(){
+		  $("#addteachersumit").click(function(){
+			  var input_name=$("#addteachename").val();
+			  var input_course=$("#addcourse").val();
+			  if (input_name == "" || input_name == null) {
+					alert("请输入先生姓名！！！");
+					return false;
+				}else{
+					if (input_course == "" || input_course == null){
+						alert("请输入先生課程！！！");
+						return false;
+					}
+					   var username = /^[\u3040-\u309F\u30A0-\u30FF\u4e00-\u9fa5A-Za-z]+$/;
+						console.log("addCheckForm Function!");
+					    console.log($("#addteachername").val());
+					    if(!username.test($("#addteachername").val())){
+							alert("先生姓名只能输入日文和英文");
+							return false;
+					    }else{
+								alert("添加成功！");
+								$("#addForm").submit();
+					}
+				}
+		  });
+		});
+	$(function(){
+		$("#addbutton").click(function() {
+			$("#addForm").submit();
+		});
+	});
+	</script>
 </head>
 <body>
-	<img src="./images/header.jpg" /> ${msg}
+	<img src="./images/header.jpg" />
 	<h1 align="center">先生信息管理</h1>
 
-
+<div>
+		<form id="displaystudentList" action="displaystudentList"
+			method="post">
+			<button id="play" type="button">
+				<p>学生の情報</p>
+			</button>
+		</form>
+	</div>
 
 	<div id="all_comm" class="all">
 		<h2 align="center">先生信息一览</h2>
@@ -100,59 +100,41 @@
 
 			<c:forEach items="${teachers}" var="teacher">
 				<tr>
-					<td id="id${teacher.id }">${teacher.id}</td>
-					<td id="name${teacher.id}">${teacher.teachername}</td>
-
+					<td id="${teacher.id }">${teacher.id}</td>
+					<td id="${teacher.name}">${teacher.name}</td>
+					<td id="${teacher.course}">${teacher.course}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<div id="add_comm" class="all" align="left">
-		<h2>查找先生</h2>
-		<form action="queryTeaByName" method="post">
-			<input type="text" placeholder="姓名" name="teachername"> <input
-				type="submit" value="查找先生">
-		</form>
-		<h2>查找先生id</h2>
-		<form action=queryteaById method="post">
-			<input type="text" placeholder="Id" name="id"> <input
-				type="submit" value="查找先生id">
-		</form>
 
-		<h2 id="edit_title">添加先生</h2>
-		<form id="addForm" action="addTeac" method="post">
-			<input id="addname" type="text" placeholder="姓名" name="name" /> <input
-				id="addcourse" type="text" placeholder="科目" name="course" /> <input
-				type="button" value="添加" onClick="addCheckForm(this.form.txt)" />
-		</form>
-	</div>
+	<h2>查找name</h2>
+	<form action="queryByteaName" method="post">
+		<input type="text" placeholder="姓名" name="name"> <input
+			type="submit" value="查找">
+	</form>
+	<h2>查找id</h2>
+	<form action="queryByteaId" method="post">
+		<input type="text" placeholder="id" name="id"> <input
+			type="submit" value="查找">
+	</form>
 
-	<div id="edit_comm" class="all">
-		<h2>删除先生</h2>
-		<form id="delForm" action="deleteByIdTeac" method="post">
-			<input id="delid" type="text" placeholder="要删除的id" name="id" /> <input
-				type="button" value="删除先生" onclick="delCheckForm()" />
-		</form>
-
-		<h2 id="edit_title">编辑先生</h2>
-		<form id="editForm" action="updateTeac" method="post">
-			<input id="editid" type="text" placeholder="要修改的id" id="edit_id"
-				name="id" placeholder="要修改的id为" /><br> <input id="editname"
-				type="text" placeholder="姓名" name="name" /> <input id="editcourse"
-				type="text" placeholder="科目" name="course" /> <input type="button"
-				value="确定修改" onclick="editCheckForm()" />
-		</form>
-	</div>
-
-	<div id="add_comm" class="all" align="center">
-		<h2 id="edit_title">先生の追加</h2>
-		<form id="addForm" action="addtea" method="post" class="checkform">
-			<input id="addname" type="text" placeholder="氏名" name="teachername" /> <input
-				id="addcourse" type="text" placeholder="科目" name="course" />
-
-			<!-- <input type="button" value="添加" onClick="addCheckForm(this.form.txt)" /> -->
-			<input type="submit" value="添の加" />
-		</form>
-	</div>
+	<h2>追加</h2>
+	<form id="addForm" action="addtea" method="post" class="checkform">
+			<input id="addname" type="text" placeholder="氏名" name="name" />
+			<input id="addcourse" type="text" placeholder="course" name="course" />
+			<button id="addbutton" type="button">
+			<p>追加</p>
+		</button>
+	</form>
+<div id="dele_comm" class="all">
+			<h2>删除</h2>
+			<form id="deleForm" action="deleteByteaId" method="post">
+				<input id="delid" type="text" placeholder="要删除的id" name="id" />
+				 <button id="delebutton" type="button">
+			<p>删除</p >
+			</button>
+			</form>
+</div>
 </body>
 </html>
